@@ -1,7 +1,8 @@
-import Head from "next/head";
-import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme, GlobalStyles } from "../utils/themes.js";
 import Home from "../layouts/home/Home";
+import fs from "fs";
+import matter from "gray-matter";
+import path from "path";
+import { postFilePaths, POSTS_PATH } from "../utils/mdxUtils";
 
 // placeholders
 const cards = [
@@ -22,6 +23,30 @@ const published = [
 
 const categories = ["Kind lang", "Vasco"];
 
-export default function Index() {
-  return <Home cards={cards} published={published} categories={categories} />;
+export default function Index({ recently_published }) {
+  return (
+    <Home
+      cards={cards}
+      published={recently_published}
+      categories={categories}
+    />
+  );
+}
+
+export function getStaticProps() {
+  const recently_published = postFilePaths
+    .map((filePath) => {
+      const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
+      const { _, data } = matter(source);
+
+      return data;
+    })
+    .filter((data) => data.published)
+    .sort(
+      (dataA, dataB) =>
+        new Date(dataB.publishedOn) - new Date(dataA.publishedOn)
+    )
+    .slice(0, 5);
+
+  return { props: { recently_published } };
 }

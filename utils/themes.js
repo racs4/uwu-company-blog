@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 export const GlobalStyles = createGlobalStyle`
   body {
+    min-height: calc(100vh - 70px);
     background: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.color.secondary};
     font-family: Montserrat, sans-serif;
