@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -24,16 +25,23 @@ const Wrapper = styled.div`
     line-height: 20px;
     text-transform: uppercase;
 
+    cursor: pointer;
     color: ${({ theme }) => theme.color.primary};
+
+    :hover {
+      color: ${({ theme }) => theme.color.secondary};
+    }
   }
 `;
 
-export default function Summary({ title, children }) {
+export default function Summary({ title, link, children }) {
   return (
     <Wrapper>
       <div className="summary-title">{title}</div>
       <div className="summary-text">{children}</div>
-      <div className="summary-more">Read More</div>
+      <Link as={`/blog/${link}`} href="/blog/[slug]">
+        <span className="summary-more">Read More</span>
+      </Link>
     </Wrapper>
   );
 }
