@@ -32,6 +32,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en-US">
         <Head>
+          <link rel="shortcut icon" href="/static/images/uwutech_icon.svg" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"

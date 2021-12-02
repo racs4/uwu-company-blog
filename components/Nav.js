@@ -1,8 +1,8 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
-import uwutech_logo from "../assets/uwutech_logo.svg";
-import uwutech_icon from "../assets/uwutech_icon.svg";
+import uwutech_logo from "../static/images/uwutech_logo.svg";
+import uwutech_icon from "../static/images/uwutech_icon.svg";
 
 const MenuItem = styled.span`
   text-transform: uppercase;

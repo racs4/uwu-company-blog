@@ -4,7 +4,7 @@ import Image from "next/image";
 import Chip from "../../components/Chip";
 import Title from "../../components/Title";
 
-import home_img from "../../assets/home.png";
+import home_img from "../../static/images/home.png";
 
 const Wrapper = styled.section`
   display: flex;
