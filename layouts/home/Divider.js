@@ -6,6 +6,6 @@ export default styled.div`
   justify-content: space-between;
 
   & > * {
-    width: max(48%, 500px);
+    width: max(48%, 348px);
   }
 `;

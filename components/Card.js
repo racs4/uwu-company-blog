@@ -5,12 +5,23 @@ const Wrapper = styled.div`
   flex-direction: column;
 
   width: 568px;
-  height: 486px;
 
   border-radius: 5px;
 
   & > * {
     margin-bottom: 10px;
+  }
+
+  & .card-ratio {
+    width: 100%;
+    padding-bottom: 60%;
+
+    position: relative;
+
+    > div {
+      position: absolute;
+      top:0; left: 0; bottom: 0; right: 0;
+    }
   }
 `;
 
@@ -36,7 +47,7 @@ const Content = styled.div`
 
 const Placeholder = styled.div`
   width: 100%;
-  height: 80%;
+  height: 100%;
   flex-shrink: 0;
   background-color: lightgray;
 `;
@@ -44,7 +55,11 @@ const Placeholder = styled.div`
 export default function Card({ title, content, children }) {
   return (
     <Wrapper>
-      <Placeholder />
+      <div className="card-ratio">
+        <div>
+          <Placeholder />
+        </div>
+      </div>
       <Head>{title}</Head>
       <Content>{content}</Content>
     </Wrapper>
