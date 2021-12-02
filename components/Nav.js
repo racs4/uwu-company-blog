@@ -64,20 +64,18 @@ export default function Nav({ children }) {
       <Link as={`/`} href={`/`}>
         <Logo>
           <div>
-            <Image src={uwutech_icon} layout="" />
+            <Image src={uwutech_icon} alt="UwU Tech logo" />
           </div>
           <div>
-            <Image src={uwutech_logo} layout="" />
+            <Image src={uwutech_logo} alt="UwU Tech logo" />
           </div>
         </Logo>
       </Link>
       <div>
         {menu_items.map((item, i) => {
           return (
-            <Link as={item.link} href={item.link}>
-              <MenuItem key={i} selected={i == 0}>
-                {item.text}
-              </MenuItem>
+            <Link key={i} as={item.link} href={item.link}>
+              <MenuItem selected={i == 0}>{item.text}</MenuItem>
             </Link>
           );
         })}

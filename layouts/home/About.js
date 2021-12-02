@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 
 export default function About({}) {
   return (
-    <Wrapper>
+    <Wrapper id="about-us">
       <Title>About us</Title>
       <div className="about-content"></div>
     </Wrapper>

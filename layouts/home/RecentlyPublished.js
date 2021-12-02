@@ -8,7 +8,7 @@ export default function RecentlyPublished({ items }) {
       {(items || []).map((item, i) => {
         return (
           <Summary key={i} title={item.title}>
-            {item.text}
+            {item.description}
           </Summary>
         );
       })}

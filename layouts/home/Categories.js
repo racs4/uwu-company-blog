@@ -52,7 +52,7 @@ export default function Categories({ categories }) {
       </div>
       <ImageWrapper>
         <div id="image-background"></div>
-        <Image src={home_img} />
+        <Image src={home_img} alt="Dev programming illustration" />
       </ImageWrapper>
     </Wrapper>
   );
