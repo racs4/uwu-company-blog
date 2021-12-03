@@ -10,9 +10,6 @@ import CustomLink from "../../components/CustomLink";
 import Title from "../../components/Title";
 import { postFilePaths, POSTS_PATH } from "../../utils/mdxUtils";
 import rehypePrism from "@mapbox/rehype-prism";
-import toc from "@jsdevtools/rehype-toc";
-import slug from "rehype-slug";
-import rehypeSlug from "rehype-slug";
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -28,9 +25,6 @@ const components = {
 };
 
 const MDX = styled.main`
-  margin: 0 200px;
-  text-align: justify;
-
   p {
     font-style: normal;
     font-weight: 500;
@@ -44,7 +38,9 @@ const MDX = styled.main`
 
   blockquote {
     border-left: 8px solid #c3daf1;
-    padding: 0 20px;
+    padding-left: 20px;
+    margin: 0;
+    margin-left: 3rem;
   }
 
   code {
@@ -86,11 +82,16 @@ const MDX = styled.main`
   }
 `;
 
+const Wrapper = styled.div`
+  margin: 0 auto;
+  max-width: 798px;
+  text-align: justify;
+`;
+
 export default function PostPage({ source, frontMatter }) {
   return (
-    <>
+    <Wrapper>
       <Head>
-        {" "}
         <meta name="description" content={frontMatter.description}></meta>{" "}
       </Head>
       <div className="post-header">
@@ -102,7 +103,7 @@ export default function PostPage({ source, frontMatter }) {
       <MDX>
         <MDXRemote {...source} components={components} lazy />
       </MDX>
-    </>
+    </Wrapper>
   );
 }
 

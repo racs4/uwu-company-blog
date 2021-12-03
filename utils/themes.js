@@ -8,6 +8,12 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 1rem;
     transition: all 200ms ease;
   }
+
+  @media screen and (max-width: 700px) {
+    .mobile-hidden {
+      display: none;
+    }
+  }
 `;
 
 export const lightTheme = {

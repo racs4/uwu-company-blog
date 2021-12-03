@@ -52,10 +52,10 @@ const Logo = styled.div`
 `;
 
 const menu_items = [
-  { text: "Projects", link: "/" },
-  { text: "Posts", link: "/blog" },
-  { text: "About us", link: "/#about-us" },
-  { text: "Contact", link: "/#contact" },
+  { text: "Projects", link: "/", mobile: true },
+  { text: "Posts", link: "/blog", mobile: true },
+  { text: "About us", link: "/#about-us", mobile: false },
+  { text: "Contact", link: "/#contact", mobile: false },
 ];
 
 export default function Nav({ children }) {
@@ -66,7 +66,7 @@ export default function Nav({ children }) {
           <div>
             <Image src={uwutech_icon} alt="UwU Tech logo" />
           </div>
-          <div>
+          <div className="mobile-hidden">
             <Image src={uwutech_logo} alt="UwU Tech logo" />
           </div>
         </Logo>
@@ -75,7 +75,12 @@ export default function Nav({ children }) {
         {menu_items.map((item, i) => {
           return (
             <Link key={i} as={item.link} href={item.link}>
-              <MenuItem selected={i == 0}>{item.text}</MenuItem>
+              <MenuItem
+                className={item.mobile ? "" : "mobile-hidden"}
+                selected={i == 0}
+              >
+                {item.text}
+              </MenuItem>
             </Link>
           );
         })}
