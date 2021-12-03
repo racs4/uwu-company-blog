@@ -7,10 +7,10 @@ const Wrapper = styled.div`
   margin: auto;
 `;
 
-export default function Layout({ children }) {
+export default function Layout({ children, theme, whenChooseTheme }) {
   return (
     <Wrapper>
-      <Nav />
+      <Nav theme={theme} whenChooseTheme={whenChooseTheme} />
       {children}
     </Wrapper>
   );

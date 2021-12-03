@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import uwutech_logo from "../static/images/uwutech_logo.svg";
 import uwutech_icon from "../static/images/uwutech_icon.svg";
+import ThemePicker from "./ThemePicker";
 
 const MenuItem = styled.span`
   text-transform: uppercase;
@@ -58,7 +59,7 @@ const menu_items = [
   { text: "Contact", link: "/#contact", mobile: false },
 ];
 
-export default function Nav({ children }) {
+export default function Nav({ theme, whenChooseTheme }) {
   return (
     <Wrapper>
       <Link as={`/`} href={`/`}>
@@ -72,6 +73,7 @@ export default function Nav({ children }) {
         </Logo>
       </Link>
       <div>
+        <ThemePicker theme={theme} whenChooseTheme={whenChooseTheme} />
         {menu_items.map((item, i) => {
           return (
             <Link key={i} as={item.link} href={item.link}>
