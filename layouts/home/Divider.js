@@ -6,6 +6,14 @@ export default styled.div`
   justify-content: space-between;
 
   & > * {
-    width: max(48%, 348px);
+    width: max(46%, 350px);
+    /* width: min(100%, 578px); */
+  }
+
+  @media screen and (max-width: 767px) {
+    & > * {
+      width: 100%;
+      /* width: min(100%, 578px); */
+    }
   }
 `;

@@ -3,8 +3,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
-  width: 568px;
+  width: 100%;
 
   border-radius: 5px;
 
