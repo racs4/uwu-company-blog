@@ -47,8 +47,6 @@ const Circle = styled.div`
       transform: scale(0) rotate(720deg);
     }
   }
-
-
 `;
 
 const Wrapper = styled.span`
@@ -57,14 +55,11 @@ const Wrapper = styled.span`
 `;
 
 export default function ThemePicker({ theme, whenChooseTheme }) {
-
   const innactive = () => setActive(false);
 
   return (
     <>
-      <Wrapper onClick={whenChooseTheme}>
-        {theme && theme.charAt(0)}
-      </Wrapper>
+      <Wrapper onClick={whenChooseTheme}>{theme && theme.charAt(0)}</Wrapper>
     </>
   );
 }

@@ -39,12 +39,12 @@ export function getStaticProps() {
     .map((filePath) => {
       const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
       const { _, data } = matter(source);
-      
+
       if (data.category && data.published) {
         categories.add(data.category);
       }
 
-      return data;
+      return { ...data, filePath };
     })
     .filter((data) => data.published)
     .sort(

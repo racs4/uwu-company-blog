@@ -7,7 +7,11 @@ export default function RecentlyPublished({ items }) {
       <Title>Recently Published</Title>
       {(items || []).map((item, i) => {
         return (
-          <Summary key={i} title={item.title}>
+          <Summary
+            link={item.filePath.replace(/\.mdx?$/, "")}
+            key={i}
+            title={item.title}
+          >
             {item.description}
           </Summary>
         );

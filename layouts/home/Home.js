@@ -16,7 +16,7 @@ export default function Home({ cards, published, categories }) {
     <>
       <Divider>
         <HomeCardWrapper>
-          {(cards || []).slice(0,2).map((item, i) => (
+          {(cards || []).slice(0, 2).map((item, i) => (
             <Card title={item.title} content={item.content} key={i} />
           ))}
         </HomeCardWrapper>

@@ -52,7 +52,7 @@ const MDX = styled.main`
     background-color: #c3daf1;
     font-family: monospace;
     padding: 20px 40px;
-    border-radius: 10px;
+    border-radius: 3px;
     overflow: auto;
 
     code {
