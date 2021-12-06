@@ -14,6 +14,11 @@ export const GlobalStyles = createGlobalStyle`
       display: none;
     }
   }
+
+  @keyframes slide-in-right{
+    from { transform: translateX(150px) }
+    to { transform: translate(0) }
+  }
 `;
 
 export const lightTheme = {

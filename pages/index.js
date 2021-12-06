@@ -23,7 +23,7 @@ const published = [
 
 const categories = ["Kind lang", "Vasco"];
 
-export default function Index({ recently_published }) {
+export default function Index({ recently_published, categories }) {
   return (
     <Home
       cards={cards}
@@ -34,10 +34,15 @@ export default function Index({ recently_published }) {
 }
 
 export function getStaticProps() {
+  let categories = new Set();
   const recently_published = postFilePaths
     .map((filePath) => {
       const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
       const { _, data } = matter(source);
+      
+      if (data.category && data.published) {
+        categories.add(data.category);
+      }
 
       return data;
     })
@@ -47,6 +52,6 @@ export function getStaticProps() {
         new Date(dataB.publishedOn) - new Date(dataA.publishedOn)
     )
     .slice(0, 5);
-
-  return { props: { recently_published } };
+  categories = Array.from(categories.values());
+  return { props: { recently_published, categories } };
 }
