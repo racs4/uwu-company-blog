@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 const Wrapper = styled.div`
   display: flex;
@@ -7,11 +8,18 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-const Image = styled.div`
+const ImageWrapper = styled.div`
   width: 200px;
   height: 200px;
-  border-radius: 9999px
-`; 
+  border-radius: 9999px;
+  position: relative;
+  overflow: hidden;
+  border: 5px solid;
+
+  box-sizing: border-box;
+
+  border-color: ${({ theme }) => theme.color.primary};
+`;
 
 const Name = styled.div`
   font-family: Montserrat;
@@ -31,15 +39,23 @@ const Text = styled.div`
   line-height: 20px;
   text-align: center;
   color: ${({ theme }) => theme.color.secondary};
-`
+`;
 
-export default function CardAbout({image, name, description}){
+export default function CardAbout({ image, name, description }) {
+  const src = `https://avatars.dicebear.com/api/croodles-neutral/${name}.svg`;
   return (
     <Wrapper>
-      <Image>{image}</Image>
+      <ImageWrapper>
+        <Image
+          loader={() => src}
+          src={src}
+          layout="fill"
+          width="200px"
+          height="200px"
+        />
+      </ImageWrapper>
       <Name>{name}</Name>
       <Text>{description}</Text>
     </Wrapper>
-  )
-  
+  );
 }
