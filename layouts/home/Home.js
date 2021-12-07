@@ -11,6 +11,8 @@ const HomeCardWrapper = styled.div`
   justify-content: space-between;
 `;
 
+
+
 export default function Home({ cards, published, categories }) {
   return (
     <>
