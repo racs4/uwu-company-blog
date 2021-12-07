@@ -72,7 +72,7 @@ export default function Nav({ theme, whenChooseTheme }) {
           </div>
         </Logo>
       </Link>
-      <div>
+      <div style={{display: "flex"}}>
         <ThemePicker theme={theme} whenChooseTheme={whenChooseTheme} />
         {menu_items.map((item, i) => {
           return (

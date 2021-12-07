@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const Circle = styled.div`
@@ -56,9 +57,42 @@ const Wrapper = styled.span`
 
 export default function ThemePicker({ theme, whenChooseTheme }) {
   const innactive = () => setActive(false);
+  let [value, setValue] = useState("#FFFFFF");
+
+  let inputElement = undefined;
+
+  const handleClick = (e) => {
+    if (inputElement) {
+      inputElement.click();
+    }
+  };
 
   return (
     <>
+      {/* <div
+        style={{
+          display: "inline-block",
+          width: "1rem",
+          height: "1rem",
+          borderRadius: "9999px",
+          background: value || "#ffffff",
+          border: "1px dashed black",
+        }}
+        onClick={handleClick}
+      >
+        <input
+          ref={(input) => (inputElement = input)}
+          type="color"
+          style={{
+            visibility: "hidden",
+            width: "0",
+            height: "0",
+            padding: "0",
+            border: "0",
+          }}
+          // onInput={(e) => { setValue(inputElement?.value || "#FFFFFF"); whenChooseTheme({ color: { primary: value }}) }}
+        ></input>
+      </div> */}
       <Wrapper onClick={whenChooseTheme}>{theme && theme.charAt(0)}</Wrapper>
     </>
   );

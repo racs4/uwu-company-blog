@@ -9,6 +9,7 @@ function App({ Component, pageProps }) {
   const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
+    // setTheme({ ...lightTheme, ...theme })
     theme == "light" ? setTheme("dark") : setTheme("light");
   };
 
@@ -17,7 +18,7 @@ function App({ Component, pageProps }) {
       <Head>
         <title>UwU Company</title>
       </Head>
-      <ThemeProvider theme={theme == "light" ? lightTheme : darkTheme}>
+      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <GlobalStyles />
         {/* <button onClick={toggleTheme}>Switch Theme</button> */}
         <Layout theme={theme} whenChooseTheme={toggleTheme}>
