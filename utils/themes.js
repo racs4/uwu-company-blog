@@ -1,5 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 export const GlobalStyles = createGlobalStyle`
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
     min-height: calc(100vh - 70px);
     background: ${({ theme }) => theme.background};
