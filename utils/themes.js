@@ -23,6 +23,11 @@ export const GlobalStyles = createGlobalStyle`
     from { transform: translateX(150px) }
     to { transform: translate(0) }
   }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
 `;
 
 export const lightTheme = {

@@ -7,7 +7,7 @@ const Wrapper = styled.div`
     width: 100%;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit,  minmax(200px, min-content));
+    grid-template-columns: repeat(auto-fit, minmax(200px, min-content));
     grid-gap: 50px 130px;
     justify-content: center;
   }

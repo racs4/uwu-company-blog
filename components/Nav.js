@@ -7,7 +7,6 @@ import ThemePicker from "./ThemePicker";
 
 const MenuItem = styled.span`
   text-transform: uppercase;
-  margin-left: 30px;
 
   font-style: normal;
   font-weight: 500;
@@ -39,6 +38,15 @@ const Wrapper = styled.nav`
   justify-content: space-between;
 
   font-size: 1.2rem;
+
+  .options {
+    display: flex;
+    align-items: flex-end;
+
+    > * {
+      margin-left: 30px;
+    }
+  }
 `;
 
 const Logo = styled.div`
@@ -72,8 +80,7 @@ export default function Nav({ theme, whenChooseTheme }) {
           </div>
         </Logo>
       </Link>
-      <div style={{ display: "flex" }}>
-        <ThemePicker theme={theme} whenChooseTheme={whenChooseTheme} />
+      <div className="options">
         {menu_items.map((item, i) => {
           return (
             <Link key={i} as={item.link} href={item.link}>
@@ -86,6 +93,7 @@ export default function Nav({ theme, whenChooseTheme }) {
             </Link>
           );
         })}
+        <ThemePicker theme={theme} whenChooseTheme={whenChooseTheme} />
       </div>
     </Wrapper>
   );

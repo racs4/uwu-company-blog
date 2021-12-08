@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -53,7 +54,19 @@ const Circle = styled.div`
 const Wrapper = styled.span`
   text-transform: uppercase;
   cursor: pointer;
+
+  .icon {
+    transition: all 5s ease;
+    /* animation: fade-in 2s ease; */
+  }
 `;
+
+const Icon = styled.div`
+  width: 24px;
+  height: 24px;
+  background: ${({icon}) => `url(${icon})`};
+  transition: all ease 700ms;
+`
 
 export default function ThemePicker({ theme, whenChooseTheme }) {
   const innactive = () => setActive(false);
@@ -66,6 +79,9 @@ export default function ThemePicker({ theme, whenChooseTheme }) {
       inputElement.click();
     }
   };
+
+  const luaIcon = "../static/icons/lua.svg";
+  const solIcon = "../static/icons/sol.svg";
 
   return (
     <>
@@ -93,7 +109,9 @@ export default function ThemePicker({ theme, whenChooseTheme }) {
           // onInput={(e) => { setValue(inputElement?.value || "#FFFFFF"); whenChooseTheme({ color: { primary: value }}) }}
         ></input>
       </div> */}
-      <Wrapper onClick={whenChooseTheme}>{theme && theme.charAt(0)}</Wrapper>
+      <Wrapper onClick={whenChooseTheme}>
+        <Icon icon={theme === "light" ? luaIcon : solIcon} />
+      </Wrapper>
     </>
   );
 }
