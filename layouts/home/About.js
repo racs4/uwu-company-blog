@@ -6,9 +6,10 @@ const Wrapper = styled.div`
   & .about-content {
     width: 100%;
 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,  minmax(200px, min-content));
+    grid-gap: 50px 130px;
+    justify-content: center;
   }
 
   & .title {
