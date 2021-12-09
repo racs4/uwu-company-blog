@@ -27,8 +27,10 @@ const ImageWrapper = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
-
-  animation: slide-in-right 500ms ease;
+  
+  @media screen and (min-width: 1200px) {
+    animation: slide-in-right 500ms ease;
+  }
 
   & #image-background {
     position: absolute;

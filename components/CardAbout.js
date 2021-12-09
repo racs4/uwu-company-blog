@@ -42,16 +42,18 @@ const Text = styled.div`
 `;
 
 export default function CardAbout({ image, name, description }) {
-  const src = `https://avatars.dicebear.com/api/croodles-neutral/${name}.svg`;
+  const loader = ({src, width}) => {
+    return `https://avatars.dicebear.com/api/croodles-neutral/${src}.svg`;
+  }
+
   return (
     <Wrapper>
       <ImageWrapper>
         <Image
-          loader={() => src}
-          src={src}
+          loader={loader}
+          src={name}
           layout="fill"
-          width="200px"
-          height="200px"
+          alt={`${name} avatar`}
         />
       </ImageWrapper>
       <Name>{name}</Name>
