@@ -34,7 +34,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function Summary({ title, link, children }) {
+export default function Summary({ title, link, children, category }) {
   return (
     <Wrapper>
       <div className="summary-title">{title}</div>

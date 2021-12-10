@@ -64,9 +64,9 @@ const Wrapper = styled.span`
 const Icon = styled.div`
   width: 24px;
   height: 24px;
-  background: ${({icon}) => `url(${icon})`};
+  background: ${({ icon }) => `url(${icon})`};
   transition: all ease 700ms;
-`
+`;
 
 export default function ThemePicker({ theme, whenChooseTheme }) {
   const innactive = () => setActive(false);

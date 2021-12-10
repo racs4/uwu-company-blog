@@ -1,40 +1,30 @@
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
-import Title from "../../components/Title";
-import Summary from "../../components/Summary";
-import { postFilePaths, POSTS_PATH } from "../../utils/mdxUtils";
+import { getPosts } from "../../utils/data";
+import Blog from "../../layouts/blog/Blog.js";
 
-export default function Index({ posts }) {
+export default function Index({ posts, params }) {
   return (
-    <>
-      <Title>Posts</Title>
-      {posts.map((post) => (
-        <Summary
-          key={post.filePath}
-          link={post.filePath.replace(/\.mdx?$/, "")}
-          title={post.data.title}
-        >
-          {post.data.description}
-        </Summary>
-      ))}
-    </>
+    <Blog
+      posts={posts}
+      category={params.category}
+      page={params.page}
+      pageQtt={params.pageQtt}
+    />
   );
 }
 
-export function getStaticProps() {
-  const posts = postFilePaths
-    .map((filePath) => {
-      const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
-      const { content, data } = matter(source);
+export function getServerSideProps(context) {
+  const { query } = context;
 
-      return {
-        content,
-        data,
-        filePath,
-      };
-    })
-    .filter((post) => post.data.published);
+  let params = {
+    page: query?.page || 1,
+    category: query?.category || null,
+  };
 
-  return { props: { posts } };
+  const { posts, pageQtt } = getPosts(params);
+  return { props: { posts, params: { ...params, pageQtt } } };
 }
+
+// export function getStaticProps(params) {
+//   const posts = getPosts();
+//   return { props: { posts } };
+// }

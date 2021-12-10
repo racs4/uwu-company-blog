@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-import Chip from "../../components/Chip";
+import CategoryChip from "../../components/CategoryChip";
 import Title from "../../components/Title";
 
 import home_img from "../../static/images/home.png";
@@ -27,7 +27,7 @@ const ImageWrapper = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
-  
+
   @media screen and (min-width: 1200px) {
     animation: slide-in-right 500ms ease;
   }
@@ -49,8 +49,8 @@ export default function Categories({ categories }) {
       <div>
         <Title>Categories</Title>
         <div className="categories-chips">
-          {categories.map((categorie, i) => (
-            <Chip key={i}>{categorie}</Chip>
+          {categories.map((category, i) => (
+            <CategoryChip key={i} category={category} />
           ))}
         </div>
       </div>

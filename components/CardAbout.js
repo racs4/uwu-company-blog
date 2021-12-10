@@ -42,9 +42,9 @@ const Text = styled.div`
 `;
 
 export default function CardAbout({ image, name, description }) {
-  const loader = ({src, width}) => {
+  const loader = ({ src, width }) => {
     return `https://avatars.dicebear.com/api/croodles-neutral/${src}.svg`;
-  }
+  };
 
   return (
     <Wrapper>

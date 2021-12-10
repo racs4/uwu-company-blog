@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import Link from "next/link";
 
-export default styled.div`
+const Wrapper = styled.div`
   background: ${({ theme }) => theme.color.primary};
   border-radius: 20px;
 
@@ -20,3 +21,11 @@ export default styled.div`
     background-color: ${({ theme }) => theme.color.secondary};
   }
 `;
+
+export default function CategoryChip({ category }) {
+  return (
+    <Link href={`/blog?category=${category}`}>
+      <Wrapper>{category}</Wrapper>
+    </Link>
+  );
+}
