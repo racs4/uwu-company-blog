@@ -24,7 +24,7 @@ const Wrapper = styled.div`
 
 export default function CategoryChip({ category }) {
   return (
-    <Link href={`/blog?category=${category}`}>
+    <Link href={`/blog?category=${category}`} passHref>
       <Wrapper>{category}</Wrapper>
     </Link>
   );

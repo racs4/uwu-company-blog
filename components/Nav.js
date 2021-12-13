@@ -70,7 +70,7 @@ const menu_items = [
 export default function Nav({ theme, whenChooseTheme }) {
   return (
     <Wrapper>
-      <Link as={`/`} href={`/`}>
+      <Link as={`/`} href={`/`} passHref>
         <Logo>
           <div>
             <Image src={uwutech_icon} alt="UwU Tech logo" />
@@ -83,7 +83,7 @@ export default function Nav({ theme, whenChooseTheme }) {
       <div className="options">
         {menu_items.map((item, i) => {
           return (
-            <Link key={i} as={item.link} href={item.link}>
+            <Link key={i} as={item.link} href={item.link} passHref>
               <MenuItem
                 className={item.mobile ? "" : "mobile-hidden"}
                 selected={i == 0}

@@ -13,6 +13,10 @@ export const GlobalStyles = createGlobalStyle`
     transition: all 200ms ease;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   @media screen and (max-width: 700px) {
     .mobile-hidden {
       display: none;

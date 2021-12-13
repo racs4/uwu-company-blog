@@ -40,7 +40,7 @@ export default function Summary({ title, link, children, category }) {
       <div className="summary-title">{title}</div>
       <div className="summary-text">{children}</div>
       <Link as={`/blog/${link}`} href="/blog/[slug]">
-        <span className="summary-more">Read More</span>
+        <a className="summary-more">Read More</a>
       </Link>
     </Wrapper>
   );
