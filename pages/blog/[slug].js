@@ -58,9 +58,13 @@ const MDX = styled.main`
   }
   
   img+em {
-    font-size: 0.9rem;
+    font-size: 0.87rem;
     text-align: center;
-    margin: auto;
+    display: block;
+  }
+
+  h2 {
+    margin-top: 50px;
   }
 
   pre {
