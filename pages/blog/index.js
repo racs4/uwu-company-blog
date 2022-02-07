@@ -34,7 +34,11 @@ export function getStaticProps() {
         filePath,
       };
     })
-    .filter((post) => post.data.published);
+    .filter((post) => post.data.published)
+    .sort(
+      (dataA, dataB) =>
+        new Date(dataA.data.publishedOn) - new Date(dataB.data.publishedOn)
+    );
 
   return { props: { posts } };
 }
