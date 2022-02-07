@@ -42,8 +42,7 @@ export const lightTheme = {
     title: "#5E6166",
   },
   text: "black",
-  background:
-    "linear-gradient(180deg, #E2F7FE 0%, rgba(226, 247, 254, 0) 100%)",
+  background: "#E2F7FE",
 };
 
 export const darkTheme = {
