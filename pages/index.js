@@ -49,7 +49,7 @@ export function getStaticProps() {
     .filter((data) => data.published)
     .sort(
       (dataA, dataB) =>
-        new Date(dataB.publishedOn) - new Date(dataA.publishedOn)
+        new Date(dataA.publishedOn) - new Date(dataB.publishedOn)
     )
     .slice(0, 5);
   categories = Array.from(categories.values());
