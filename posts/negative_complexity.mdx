@@ -1,0 +1,151 @@
+---
+title: "Functions may behave as if they had negative complexity on optimal evaluators"
+description: Going through it
+published: true
+publishedOn: 07/02/2021
+category: Crypto
+---
+
+![](https://miro.medium.com/max/1400/1*6loyDjaOsqZ_TxCyB5wdqg.jpeg)
+
+I’ve been for a long time experimenting with the [Abstract Algorithm](https://dl.acm.org/citation.cfm?id=96711), a very elegant machine that executes functional languages “optimally”. Explaining how it works is out of the scope of this post, but it suffices to say it transforms λ-terms to a specific kind of graph, which is then reduced by consecutive atomic (constant-time) parallel rewrites.
+
+![](https://miro.medium.com/max/4800/1*a2nZ5eVQhVi4hSdA0VtdDg.png)
+*From [“The Optimal Implementation of Functional Programming Languages”](https://www.amazon.com/Implementation-Functional-Programming-Languages-Theoretical/dp/0521621127) by A. Asperti and S. Guerrini.*
+
+That algorithm is not only very elegant (beta\-reduction is symmetric!), but also very fast, beating **asymptotically** Haskell, OCaml, Elm, JavaScript and any other “functional” programming language you can think of. It is so fast that, sometimes, it beats even common sense. As an example, I’ve observed it can often [apply a function N times in `O(log(n)`atomic operations](https://github.com/VictorTaelin/articles/tree/master/0004-supercompilation-for-free) (wut?).
+
+If that sounds bizarre enough, I hope this recent experiment will leave you as perplex as I am. As far as complexity theory goes, the more things you do, the higher the costs of your algorithm. Common sense, right? Well, not for Absal. In some cases, a function can behave as if it had… negative complexity? Wut? Here is an example:
+
+```haskell
+-- Binary strings
+data Bits = B0 Bits | B1 Bits | End deriving Show
+
+-- Identity function for bits
+-- (Recursive functions are implemented with a max recursion depth `d`)
+copy :: Int -> Bits -> Bits
+copy 0 bits     = End
+copy d (B0 xs)  = B0 (copy (d - 1) xs)
+copy d (B1 xs)  = B1 (copy (d - 1) xs)
+copy d End      = End
+
+-- Increments a binary number
+inc :: Int -> Bits -> Bits
+inc 0 bits    = bits
+inc d (B0 xs) = B1 xs
+inc d (B1 xs) = B0 (inc (d - 1) xs)
+inc d End     = End
+
+-- Increments a binary number by a `n`
+add :: Int -> Int -> Bits -> Bits
+add d 0 bits = bits
+add d n bits = inc d (add d (n - 1) bits)
+
+-- Example binary with 8 zeros
+ex :: Bits
+ex = B0 (B0 (B0 (B0 (B0 (B0 (B0 (B0 End)))))))
+
+-- Adds 100 to our example
+main :: IO ()
+main = print (add 8 100 ex)
+```
+
+
+
+This snippet implements 3 Haskell functions:
+
+*   `copy` recurses over a bitstring and returns itself (copy(“0000”) = “0000”).
+*   `inc` increments the bitstring by 1 (inc(“0000") = “0001”).
+*   `add` increments a bitstring by `N` (add(2,”0000") = “0010”).
+
+The complexity of the functions above are pretty straightforward to analyze:
+
+*   `O(d)` for `copy` (as it is just a recursive identity)
+*   `O(1)` for `inc` (amortized)
+*   `O(n)` for `add` (because it applies `inc` `n` times)
+
+So far, nothing unusual. But what if, instead of compiling it with GHC, we used Absal? Well, the first thing you’ll notice is that `add` suddenly behaves as if it had sub-linear complexity. Here is a table showing the amount of atomic graph rewrites required to compute `add(N,ex)` for different `N`s:
+
+```
+N   | add(N,ex)
+--- | ---
+1   | 228
+2   | 390
+4   | 695
+8   | 1234
+16  | 2161
+32  | 3704
+64  | 6159
+128 | 9798
+```
+
+That is, for example, computing `add(64,ex)` (which returns the bit-string `00000010`) requires 6159 atomic graph rewrites. As you can see, the function is clearly scaling sub-linearly, despite calling an operation `N` times. Strange, but that’s just the same kind of “magical asymptotic boost” that I’ve been observing for years already. Nothing new here. The real bizarreness, though, happens when we combine `copy` with `add` by composing them together. If `add(64,ex)` takes 6159 steps to compute, then `copy(add(64,ex))` should take **at least** 6159 steps, right? Well, here is the former table, updated:
+
+```
+N   | add(N,ex) | copy(add(N,ex))
+--- | ---       | ---
+1   | 228       | 302
+2   | 390       | 368
+4   | 695       | 465
+8   | 1234      | 587
+16  | 2161      | 734
+32  | 3704      | 906
+64  | 6159      | 1103
+128 | 9798      | 1301
+```
+
+As you can see, `copy(add(N,ex))` is actually much faster than `add(N,ex)`, despite doing the same thing plus an extra traversal. Wut? Not only that, its complexity seems to be logarithmic, making it actually as efficient as a standard “add with carry” implementation; despite being a dumb “inc n times” recursion. Wut? How can calling an extra function make your program run faster? How can a dumb, linear implementation run logarithmically? How do we even begin to analyze the complexity of `copy` in that context? Under which circumstances the asymptotics of a function can be magically reduced like that? Could that be applied to problems like the [DLP](https://en.wikipedia.org/wiki/Discrete_logarithm) (breaking most crypto-currencies)? What is even going on here?
+
+Well, let me explain carefully. Just kidding. I have no idea. If anyone has, though, please let me know! Of course, there is no such a thing as negative complexity; that experiment just shows that composing a function with another can reduce its complexity in Absal, and my crypto is (probably) fine. But still, this experiment is absolutely anti-intuitive, if not bizarre, and begs an explanation. It might be helpful to render the graphs and watch them being reduced, but I’ll leave that exercise for later. Hopefully, though, this post will inspire some curious mind to research it further (and please warn me if you actually solve the DLP).
+
+**Reproducing**
+---------------
+
+The steps to reproduce the experiment are:
+
+1.  [Install npm](https://www.npmjs.com/).
+2.  Run `npm i -g abstract-algorithm`.
+3.  Save [this gist](https://gist.github.com/VictorTaelin/a2c67dd3776592d3d432c705e8d77ec9) as `test.lam`.
+4.  Run `absal --bruijn --stats test`.
+
+This will output the bit string returned by computing `copy(add(42,ex))`, as well as the number of atomic graph rewrites (rules) required to complete the computation. The result will be displayed as a λ term with bruijn indices as letters. The input is a λ-calculus term. You can play with it by removing the `::copy 8` line, and you can change `N` by replacing `42b` by something else. If you want to go further and edit the code, the syntax used is: `:f x` for applications (read as`f(x)`) and `#x t` for lambdas (read as `\x -> t`). No parenthesis are needed. The translations from Haskell to the λ-calculus were done manually.
+
+![](https://miro.medium.com/max/4800/1*y8pwGQjFoPCDmcl_ZHWjfA.png)
+*Simplified reduction, from Lamping’s 1989 paper.*
+
+Edit: this has been solved
+--------------------------
+
+[Here](https://medium.com/@VictorTaelin/solving-the-mystery-behind-abstract-algorithms-magical-optimizations-144225164b07) is a follow-up post explaining why that happens!
+
+**Edit: a few additional notes**
+--------------------------------
+
+**1\. This is not a bug / compile-time optimization**
+
+Some have been wondering if this is some kind of bug or compile time optimization. It is not! There are many alternative implementations of the algorithm by different people, all reproducing the same results, so it isn’t a bug. And my compiler does no optimizing transformation at all.
+
+**2\. Absal currently performs 30 million rewrites per second**
+
+Some have asked what I mean by an “atomic graph rewrite”, i.e., what I’m counting. A graph rewrite is an operation that takes a pair of nodes (each node is 128 bits) and either deletes or duplicates them. It changes at up to about 800 bits in memory, so it is a constant-time operation. To be clear: the amount of time that Absal takes to evaluate a program is proportional of the number of rewrites. My [Rust](https://github.com/VictorTaelin/absal-rs) implementation (sequential) performs about 30 million rewrites per second.
+
+**3\. The complexity of** **`copy. add`** **is indeed sub-linear**
+
+Some have wondered if the small size of my examples affected the result. On [this](https://www.reddit.com/r/programming/comments/97lnib/some_functions_may_have_negative_complexity_and_i/e49urmn/) Reddit post, I asked Absal to compute **`copy(add(4097152081, “00000000”))`**, which it instantly and correctly answered as `“0b11110100001101011001010001010001”` (binary for 4097152081). That took about 21m graph rewrites, much less than the 4b calls it should perform, thus clearly sub-linear.
+
+**4\. This is not a novel complexity theory result**
+
+This post isn’t claiming that I have a faster addition algorithm than currently known! The only observation of this post is that **the function `add(n,bits) = copy(repeat(inc,N,bits)))` is asymptotically faster than the function `add(n,bits) = repeat(inc,N,bits)`**. That is undeniably true assuming the λ-calculus as our computational model, because Absal takes less beta-reduction steps to normalize the former function than the later, and Absal in turn takes as few beta-reduction steps as possible (due to being provably beta-optimal).
+
+**5\. Ignore the word “parallel” for this post**
+
+The abstract algorithm is extremely parallel, yes, but, the measures and implementations considered here are sequential! For example, I’m counting total rewrites, not parallel rewrites. There is no parallelism involved on this post at all. Consider it a sequential reduction machine like Haskell’s STG or any other.
+
+**6\. Fractional complexity would be a better term**
+
+The `copy` function behaves as if it had `O(1/n)` complexity on the `copy . add` composition, so, “fractional complexity” would be better. Note that this is just a silly analogy, none of those are meaningful complexity theory terms.
+
+**More info**
+-------------
+
+On [this](https://www.reddit.com/r/haskell/comments/97lu10/functions_may_behave_as_if_they_had_negative/e49jybh/) reply I explain a little bit about the problem of evaluating functional programs and why optimal sharing is so amazing. [This](https://www.amazon.com/Implementation-Functional-Programming-Languages-Theoretical/dp/0521621127) book is an amazing explanation of the problem and solution. [This](https://www.youtube.com/watch?v=VZUOtTer1wI) lecture explains it in simpler terms, you can find more [here](https://queuea9.wordpress.com/2018/06/06/optimal-beta-reduction-lecture-1/) about it. [This](https://imgur.com/a/DP9rAgm) imgur album has some drawings on how those graphs look like. [This](https://github.com/VictorTaelin/absal-ex) repository has more detailed notes on the actual implementation. The actual implementations are so small you may like reading them: [Rust](http://github.com/VictorTaelin/absal-rs) / [JavaScript](http://github.com/VictorTaelin/abstract-algorithm). There is more information spread through [my Reddit](https://www.reddit.com/user/SrPeixinho/) threads; feel free to ask anything there!

@@ -15,7 +15,11 @@ export function getPosts(params) {
         filePath,
       };
     })
-    .filter((post) => post.data.published);
+    .filter((post) => post.data.published)
+    .sort(
+      (postA, postB) =>
+        new Date(postA.data.publishedOn) - new Date(postB.data.publishedOn)
+    );
 
   if (params?.category) {
     const category = params.category;

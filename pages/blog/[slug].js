@@ -36,6 +36,10 @@ const MDX = styled.main`
     color: ${({ theme }) => theme.color.primary};
   }
 
+  li+li { 
+    margin-top: 8px;
+  }
+
   blockquote {
     border-left: 8px solid #c3daf1;
     padding-left: 20px;
@@ -44,8 +48,23 @@ const MDX = styled.main`
   }
 
   code {
-    background-color: lightgrey;
+    background-color: rgba(110, 118, 129, 0.2);
     padding: 0 5px;
+    border-radius: 5px;
+  }
+
+  img { 
+    width: 100%;
+  }
+  
+  img+em {
+    font-size: 0.87rem;
+    text-align: center;
+    display: block;
+  }
+
+  h2 {
+    margin-top: 50px;
   }
 
   pre {
@@ -56,6 +75,7 @@ const MDX = styled.main`
     overflow: auto;
 
     code {
+      padding: 0px;
       background: transparent;
     }
   }
