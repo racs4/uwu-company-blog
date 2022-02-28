@@ -34,14 +34,19 @@ const Wrapper = styled.div`
   }
 `;
 
+const Divider = styled.hr`
+  margin-top: 30px;
+`;
+
 export default function Summary({ title, link, children, category }) {
   return (
     <Wrapper>
       <div className="summary-title">{title}</div>
       <div className="summary-text">{children}</div>
       <Link as={`/blog/${link}`} href="/blog/[slug]">
-        <a className="summary-more">Read More</a>
+        <a className="summary-more" style={{textDecoration: 'underline'}}>Read More</a>
       </Link>
+      {/* <Divider/> */}
     </Wrapper>
   );
 }
