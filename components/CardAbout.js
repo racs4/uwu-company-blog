@@ -19,6 +19,7 @@ const ImageWrapper = styled.div`
   box-sizing: border-box;
 
   border-color: ${({ theme }) => theme.color.primary};
+  background-color: ${({ theme }) => theme.name === "dark" ? theme.color.primary : 'transparent'};
 `;
 
 const Name = styled.div`
