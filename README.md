@@ -1,4 +1,4 @@
-# UwU Company Blog
+# Kindelia Company Blog
 
 To run dev mode:
 

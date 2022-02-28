@@ -65,6 +65,7 @@ const Icon = styled.div`
   width: 24px;
   height: 24px;
   background: ${({ icon }) => `url(${icon})`};
+  filter: ${({ theme }) => `invert(${theme.name === 'dark' ? 1 : 0})`};
   transition: all ease 700ms;
 `;
 

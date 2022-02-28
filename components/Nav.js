@@ -1,8 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
-import uwutech_logo from "../static/images/uwutech_logo.svg";
-import uwutech_icon from "../static/images/uwutech_icon.svg";
+import kindelia_icon from "../static/images/kindelia_icon.svg";
 import ThemePicker from "./ThemePicker";
 
 const MenuItem = styled.span`
@@ -54,9 +53,14 @@ const Logo = styled.div`
   align-items: center;
 
   cursor: pointer;
-
   & > * {
     margin-right: 10px;
+  }
+
+  max-height: 100%;
+
+  img {
+    filter: ${({ theme }) => `invert(${theme.name === 'dark' ? 1 : 0})`};
   }
 `;
 
@@ -73,10 +77,10 @@ export default function Nav({ theme, whenChooseTheme }) {
       <Link as={`/`} href={`/`} passHref>
         <Logo>
           <div>
-            <Image src={uwutech_icon} alt="UwU Tech logo" />
+            <Image width={50} height={50} src={kindelia_icon} alt="kindelia logo" />
           </div>
           <div className="mobile-hidden">
-            <Image src={uwutech_logo} alt="UwU Tech logo" />
+            <span>Kindelia</span>
           </div>
         </Logo>
       </Link>
