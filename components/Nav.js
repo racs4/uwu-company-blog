@@ -34,7 +34,7 @@ const Wrapper = styled.nav`
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   font-size: 1.2rem;
 
@@ -51,6 +51,7 @@ const Wrapper = styled.nav`
 const Logo = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
 
   cursor: pointer;
   & > * {
@@ -77,14 +78,14 @@ export default function Nav({ theme, whenChooseTheme }) {
       <Link as={`/`} href={`/`} passHref>
         <Logo>
           <div>
-            <Image width={40} height={40} src={kindelia_icon} alt="kindelia logo" />
+            <Image width={50} height={50} src={kindelia_icon} alt="kindelia logo" />
           </div>
           <div className="mobile-hidden">
             <span>Kindelia</span>
           </div>
         </Logo>
       </Link>
-      <div className="options">
+      {/* <div className="options">
         {menu_items.map((item, i) => {
           return (
             <Link key={i} as={item.link} href={item.link} passHref>
@@ -98,7 +99,7 @@ export default function Nav({ theme, whenChooseTheme }) {
           );
         })}
         <ThemePicker theme={theme} whenChooseTheme={whenChooseTheme} />
-      </div>
+      </div> */}
     </Wrapper>
   );
 }

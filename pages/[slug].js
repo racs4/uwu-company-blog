@@ -6,9 +6,9 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import path from "path";
 import styled from "styled-components";
-import CustomLink from "../../components/CustomLink";
-import Title from "../../components/Title";
-import { postFilePaths, POSTS_PATH } from "../../utils/mdxUtils";
+import CustomLink from "../components/CustomLink";
+import Title from "../components/Title";
+import { postFilePaths, POSTS_PATH } from "../utils/mdxUtils";
 import rehypePrism from "@mapbox/rehype-prism";
 
 // Custom components/renderers to pass to MDX.
@@ -20,7 +20,7 @@ const components = {
   // It also works with dynamically-imported components, which is especially
   // useful for conditionally loading components for certain routes.
   // See the notes in README.md for more details.
-  Button: dynamic(() => import("../../components/Button")),
+  Button: dynamic(() => import("../components/Button")),
   Head,
 };
 

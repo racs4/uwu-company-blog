@@ -43,7 +43,7 @@ export const lightTheme = {
     title: "#5E6166",
   },
   text: "black",
-  background: "#E2F7FE",
+  background: "white",
   background_code: "white",
 };
 

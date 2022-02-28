@@ -9,6 +9,8 @@ const Wrapper = styled.div `
   flex-direction: column;
   justify-content: space-between;
   min-height: calc(100vh - 190px);
+  max-width: 798px;
+  margin: 0 auto;
 `;
 
 export default function Blog({ posts, page, category, pageQtt }) {
@@ -17,19 +19,18 @@ export default function Blog({ posts, page, category, pageQtt }) {
   return (
     <Wrapper>
       <div>
-        <Title>Posts</Title>
         {posts.map((post) => (
           <Summary
             key={post.filePath}
             link={post.filePath.replace(/\.mdx?$/, "")}
             title={post.data.title}
-            category={post.data.category}
+            date={post.data.publishedOn}
           >
             {post.data.description}
           </Summary>
         ))}
       </div>
-      <Pagination
+      {/* <Pagination
         total={pageQtt}
         page={page}
         whenPageChange={(page) => {
@@ -39,7 +40,7 @@ export default function Blog({ posts, page, category, pageQtt }) {
             router.push(`/blog/?page=${page}`);
           }
         }}
-      />
+      /> */}
     </Wrapper>
   );
 }

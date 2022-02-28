@@ -10,8 +10,14 @@ const Wrapper = styled.div`
     line-height: 29px;
 
     color: ${({ theme }) => theme.color.primary};
+    
+    margin-top: 2px;
+    margin-bottom: 5px;
+    cursor: pointer;
 
-    margin-bottom: 20px;
+    :hover {
+      color: ${({ theme }) => theme.color.secondary};
+    }
   }
 
   & .summary-text {
@@ -32,20 +38,26 @@ const Wrapper = styled.div`
       color: ${({ theme }) => theme.color.secondary};
     }
   }
+
+  & .summary-date {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: ${({ theme }) => theme.color.primary};
+  }
 `;
 
 const Divider = styled.hr`
   margin-top: 30px;
 `;
 
-export default function Summary({ title, link, children, category }) {
+export default function Summary({ title, link, children, date }) {
   return (
     <Wrapper>
-      <div className="summary-title">{title}</div>
-      <div className="summary-text">{children}</div>
-      <Link as={`/blog/${link}`} href="/blog/[slug]">
-        <a className="summary-more" style={{textDecoration: 'underline'}}>Read More</a>
+      <span className="summary-date">{date}</span>
+      <Link as={`/${link}`} href="/[slug]">
+        <div className="summary-title">{title}</div>
       </Link>
+      <div className="summary-text">{children}</div>
       {/* <Divider/> */}
     </Wrapper>
   );
