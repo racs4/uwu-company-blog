@@ -68,7 +68,7 @@ const MDX = styled.main`
   }
 
   pre {
-    background-color: #c3daf1;
+    background-color: ${({ theme }) => theme.background_code};
     font-family: monospace;
     padding: 20px 40px;
     border-radius: 3px;
@@ -104,6 +104,7 @@ const MDX = styled.main`
 
 const Wrapper = styled.div`
   margin: 0 auto;
+  margin-bottom: 100px;
   max-width: 798px;
   text-align: justify;
 `;

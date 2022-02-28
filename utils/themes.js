@@ -44,6 +44,7 @@ export const lightTheme = {
   },
   text: "black",
   background: "#E2F7FE",
+  background_code: "white",
 };
 
 export const darkTheme = {
@@ -56,4 +57,5 @@ export const darkTheme = {
   },
   text: "white",
   background: "linear-gradient(0deg, #222222 0%, #000 100%)",
+  background_code: "#1d1515",
 };

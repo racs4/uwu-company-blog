@@ -77,7 +77,7 @@ export default function Nav({ theme, whenChooseTheme }) {
       <Link as={`/`} href={`/`} passHref>
         <Logo>
           <div>
-            <Image width={50} height={50} src={kindelia_icon} alt="kindelia logo" />
+            <Image width={40} height={40} src={kindelia_icon} alt="kindelia logo" />
           </div>
           <div className="mobile-hidden">
             <span>Kindelia</span>
