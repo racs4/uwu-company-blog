@@ -121,6 +121,10 @@ export default function PostPage({ source, frontMatter }) {
     <Wrapper>
       <Head>
         <meta name="description" content={frontMatter.description}></meta>
+        <meta property="og:title" content={frontMatter.title} />
+        <meta property="og:type" content="website" />
+        {frontMatter.thumb && <meta property="og:image:url" content={frontMatter.thumb} />}
+        <meta property="og:description" content={frontMatter.description} />
       </Head>
       <div className="post-header">
         <Title style={{ textAlign: "center" }}>{frontMatter.title}</Title>
