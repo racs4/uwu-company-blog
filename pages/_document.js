@@ -32,7 +32,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en-US">
         <Head>
-          <link rel="shortcut icon" href="/static/images/uwutech_icon.svg" />
+          <link rel="shortcut icon" href="/static/images/kindelia_icon.svg" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"
@@ -43,6 +43,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
             rel="stylesheet"
           />
+          <meta name="description" content="Kindelia's blog"></meta>
         </Head>
         <body>
           <Main />

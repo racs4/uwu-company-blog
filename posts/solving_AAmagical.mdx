@@ -4,6 +4,7 @@ description: Magic!
 published: true
 publishedOn: 07/02/2021
 category: Crypto
+author: Victor Taelin
 ---
 
 Yesterday, [I reported](https://medium.com/@maiavictor/some-functions-may-have-negative-complexity-im-worried-for-my-crypto-c53f6e7343d3) the bizarre observation that certain functions can behave as if they had negative complexity. If you haven’t checked that article yet, it isn’t necessary, but you should, as it may blow your mind. In short, the λ-term `f(bits) = copy(comp(inc,n,bits))`, when given to optimal λ-calculus evaluator, is asymptotically faster than `g(bits) = comp(inc,n,bits)`; i.e.,`copy` (a `O(1)` operation for a fixed size) behaves as if it had a `O(1/n)` complexity, causing the program to run faster by doing more things (!?).

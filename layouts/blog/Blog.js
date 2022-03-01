@@ -1,6 +1,4 @@
-import Title from "../../components/Title";
 import Summary from "../../components/Summary";
-import Pagination from "../../components/Pagination";
 import { useRouter } from "next/dist/client/router";
 import styled from "styled-components";
 

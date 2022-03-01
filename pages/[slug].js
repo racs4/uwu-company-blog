@@ -2,7 +2,6 @@ import fs from "fs";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
-import dynamic from "next/dynamic";
 import Head from "next/head";
 import path from "path";
 import styled from "styled-components";
@@ -20,7 +19,6 @@ const components = {
   // It also works with dynamically-imported components, which is especially
   // useful for conditionally loading components for certain routes.
   // See the notes in README.md for more details.
-  Button: dynamic(() => import("../components/Button")),
   Head,
 };
 
@@ -107,19 +105,28 @@ const Wrapper = styled.div`
   margin-bottom: 100px;
   max-width: 798px;
   text-align: justify;
+
+  .description {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .post-header {
+    margin-bottom: 55px;
+  }
 `;
 
 export default function PostPage({ source, frontMatter }) {
   return (
     <Wrapper>
       <Head>
-        <meta name="description" content={frontMatter.description}></meta>{" "}
+        <meta name="description" content={frontMatter.description}></meta>
       </Head>
       <div className="post-header">
         <Title style={{ textAlign: "center" }}>{frontMatter.title}</Title>
-        {/* {frontMatter.description && (
-          <p className="description">{frontMatter.description}</p>
-        )} */}
+        {frontMatter.author && (
+          <p className="description">by <em>{frontMatter.author}</em></p>
+        )}
       </div>
       <MDX>
         <MDXRemote {...source} components={components} lazy />

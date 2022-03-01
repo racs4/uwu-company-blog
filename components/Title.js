@@ -10,5 +10,4 @@ export default styled.h1`
   color: ${({ theme }) => theme.color.title};
 
   text-transform: uppercase;
-  margin-bottom: 55px;
 `;
