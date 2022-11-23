@@ -1,7 +1,5 @@
 import Link from "next/link";
 import styled from "styled-components";
-import Image from "next/image";
-import kindelia_icon from "../static/images/kindelia_icon.svg";
 
 const MenuItem = styled.span`
   text-transform: uppercase;
