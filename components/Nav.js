@@ -76,11 +76,11 @@ export default function Nav({ theme, whenChooseTheme }) {
     <Wrapper>
       <Link as={`/`} href={`/`} passHref>
         <Logo>
-          <div>
+          {/* <div>
             <Image width={50} height={50} src={kindelia_icon} alt="kindelia logo" />
-          </div>
+          </div> */}
           <div className="mobile-hidden">
-            <span>Kindelia</span>
+            <span>Victor Taelin's Blog</span>
           </div>
         </Logo>
       </Link>

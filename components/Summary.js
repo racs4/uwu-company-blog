@@ -57,7 +57,7 @@ export default function Summary({ title, link, children, date }) {
       <Link as={`/${link}`} href="/[slug]">
         <div className="summary-title">{title}</div>
       </Link>
-      <div className="summary-text">{children}</div>
+      {/* <div className="summary-text">{children}</div> */}
       {/* <Divider/> */}
     </Wrapper>
   );

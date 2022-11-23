@@ -16,7 +16,7 @@ function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Kindelia Blog</title>
+        <title>Victor Taelin's Blog</title>
       </Head>
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <GlobalStyles />

@@ -128,9 +128,9 @@ export default function PostPage({ source, frontMatter }) {
       </Head>
       <div className="post-header">
         <Title style={{ textAlign: "center" }}>{frontMatter.title}</Title>
-        {frontMatter.author && (
+        {/* {frontMatter.author && (
           <p className="description">by <em>{frontMatter.author}</em></p>
-        )}
+        )} */}
       </div>
       <MDX>
         <MDXRemote {...source} components={components} lazy />
