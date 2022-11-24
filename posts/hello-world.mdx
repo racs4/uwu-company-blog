@@ -1,10 +1,7 @@
 ---
-title: "Beyond inductive datatypes exploring Self types"
-description: Kind is a proof-gramming language that can be used to define inductive datatypes and prove mathematical theorems. Unlike other proof assistants, Kind doesn't include a complex native induction system. Instead, it extends type-theory with a simple primitive, 'Self', which empowers the core language.
+title: "Hello, world!"
 published: true
-publishedOn: 12/12/2021
-category: Kind Lang
-author: Victor Taelin
+publishedOn: 12/12/2025
 ---
 
 [Kind](https://github.com/kindelia/kind) is a **proof**gramming language that
@@ -134,7 +131,7 @@ This works, but it results in complex, confusing arithmetic functions, as we
 have to cautiously consider many cases of signs. For example, here is `negate`
 and `add`, ported from `Agda`:
 
-```javascript
+```haskell
 Int.negate(a: Int): Int
   case a {
     pos: case a.nat {

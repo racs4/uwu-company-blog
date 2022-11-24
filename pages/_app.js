@@ -6,9 +6,13 @@ import "../style/list.css";
 import "../style/post.css";
 
 function App({ Component, pageProps }) {
+  var logo_style = {
+    "fontWeight": "bold",
+    "fontSize": "24px",
+    //"color": "#707070",
+  };
   return (
     <>
-      {/* Head title */}
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -20,17 +24,17 @@ function App({ Component, pageProps }) {
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        <meta name="description" content="Victor Taelin's blog"></meta>
-        <title>Victor Taelin's Blog</title>
+        <meta name="description" content="Victor Taelin"></meta>
+        <title>Victor Taelin</title>
       </Head>
-      {/* Body */}
       <div className="app-wrapper">
-        {/* Logo */}
         <div className="nav-wrapper">
           <Link as={`/`} href={`/`} passHref>
             <div className="logo-wrapper">
               <div className="mobile-hidden">
-                <span>Victor Taelin's Blog</span>
+                <span style={logo_style}>
+                  Victor Taelin
+                </span>
               </div>
             </div>
           </Link>
@@ -41,4 +45,5 @@ function App({ Component, pageProps }) {
     </>
   );
 }
+
 export default App;

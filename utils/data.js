@@ -8,7 +8,6 @@ export const POSTS_PATH = path.join(process.cwd(), "posts");
 // postFilePaths is the list of all mdx files inside the POSTS_PATH directory
 export const postFilePaths = fs
   .readdirSync(POSTS_PATH)
-  // Only include md(x) files
   .filter((path) => /\.mdx?$/.test(path));
 
 export function getPosts(params) {
@@ -16,18 +15,16 @@ export function getPosts(params) {
     .map((filePath) => {
       const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
       const { content, data } = matter(source);
-
-      return {
-        content,
-        data,
-        filePath,
-      };
+      return { content, data, filePath };
     })
-    .filter((post) => post.data.published)
-    .sort(
-      (postA, postB) =>
-        new Date(postA.data.publishedOn) - new Date(postB.data.publishedOn)
-    );
+    .filter((post) => {
+      return post.data.published;
+    })
+    .sort((postA, postB) => {
+      let a_date = new Date(postA.data.publishedOn);
+      let b_date = new Date(postB.data.publishedOn);
+      return b_date - a_date;
+    });
 
   return posts;
 }

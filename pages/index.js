@@ -10,7 +10,7 @@ export default function Index({ posts, params }) {
           return (
             <div className="summary" key={post.filePath}>
               <span className="summary-date">{post.data.publishedOn}</span>
-              <Link as={`/${link}`} href="/[slug]">
+              <Link as={`/${link}`} href="/[post]">
                 <div className="summary-title">{post.data.title}</div>
               </Link>
             </div>
