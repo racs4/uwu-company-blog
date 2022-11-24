@@ -1,0 +1,68 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: calc(100vh - 70px);
+  background: white;
+  color: #424242;
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+  transition: all 200ms ease;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 700px) {
+  .mobile-hidden {
+    display: none;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(150px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.app-wrapper {
+  max-width: 1200px;
+  width: 95%;
+  margin: auto;
+}
+
+.nav-wrapper {
+  width: 100%;
+  height: 50px;
+
+  margin-top: 60px;
+  margin-bottom: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.2rem;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  max-height: 100%;
+}

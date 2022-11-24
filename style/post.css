@@ -1,0 +1,103 @@
+.post-wrapper {
+  margin: 0 auto;
+  margin-bottom: 100px;
+  max-width: 798px;
+  text-align: justify;
+}
+
+.post-wrapper .description {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.post-wrapper .post-header {
+  margin-bottom: 55px;
+}
+
+.post-wrapper .title {
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 29px;
+  letter-spacing: 0.2em;
+  color: black;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.mdx p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 29px;
+}
+
+.mdx h1 {
+  color: #d05270;
+}
+
+.mdx li + li {
+  margin-top: 8px;
+}
+
+.mdx blockquote {
+  border-left: 8px solid #c3daf1;
+  padding-left: 20px;
+  margin: 0;
+  margin-left: 3rem;
+}
+
+.mdx code {
+  background-color: rgba(110, 118, 129, 0.2);
+  padding: 0 5px;
+  border-radius: 5px;
+}
+
+.mdx img {
+  width: 100%;
+}
+
+.mdx img + em {
+  font-size: 0.87rem;
+  text-align: center;
+  display: block;
+}
+
+.mdx h2 {
+  margin-top: 50px;
+}
+
+.mdx pre {
+  background-color: white;
+  font-family: monospace;
+  padding: 20px 40px;
+  border-radius: 3px;
+  overflow: auto;
+}
+
+.mdx pre code {
+  padding: 0px;
+  background: transparent;
+}
+
+.mdx .toc {
+  float: right;
+}
+
+.mdx .keyword {
+  color: blue;
+}
+
+.mdx .function {
+  color: red;
+}
+
+.class-name,
+.mdx .maybe-class-name {
+  color: #5e6fed;
+}
+
+.mdx .comment {
+  color: green;
+}

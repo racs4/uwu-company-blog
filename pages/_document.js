@@ -32,7 +32,6 @@ class MyDocument extends Document {
     return (
       <Html lang="en-US">
         <Head>
-          <link rel="shortcut icon" href="/public/images/kindelia_icon.svg" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"
