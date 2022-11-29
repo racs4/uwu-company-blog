@@ -6,7 +6,23 @@ import Head from "next/head";
 import path from "path";
 import Link from "next/link";
 import { postFilePaths, POSTS_PATH } from "../utils/data";
-import rehypePrism from "@mapbox/rehype-prism";
+
+// language highlighting
+import { refractor } from "refractor";
+import agda from "refractor/lang/agda.js";
+import haskell from "refractor/lang/haskell.js";
+import kind2 from "../utils/kind-prism";
+import hvm from "../utils/hvm-prism";
+import idris from "refractor/lang/idris.js";
+import rehypePrismGenerator from "rehype-prism-plus/generator";
+
+refractor.register(kind2);
+refractor.register(haskell);
+refractor.register(agda);
+refractor.register(hvm);
+refractor.register(idris);
+
+const myPrismPlugin = rehypePrismGenerator(refractor);
 
 /// Customize links
 function CustomLink({ as, href, ...otherProps }) {
@@ -70,7 +86,7 @@ export const getStaticProps = async ({ params }) => {
   const mdxSource = await serialize(content, {
     scope: data,
     mdxOptions: {
-      rehypePlugins: [rehypePrism],
+      rehypePlugins: [myPrismPlugin],
     },
   });
 

@@ -7,18 +7,14 @@
     "start": "next start"
   },
   "dependencies": {
-    "@jsdevtools/rehype-toc": "^3.0.2",
-    "@mapbox/rehype-prism": "^0.7.0",
+    "@mapbox/rehype-prism": "^0.8.0",
     "gray-matter": "^4.0.2",
     "next": "latest",
     "next-mdx-remote": "^3.0.1",
     "next-remote-watch": "1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "sharp": "^0.29.3",
-    "styled-components": "^5.3.3"
-  },
-  "devDependencies": {
-    "babel-plugin-styled-components": "^2.0.2"
+    "refractor": "^4.8.0",
+    "rehype-prism-plus": "^1.5.0"
   }
 }

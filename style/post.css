@@ -81,23 +81,56 @@
   background: transparent;
 }
 
-.mdx .toc {
-  float: right;
+.mdx .string {
+  color: darkgreen;
 }
 
-.mdx .keyword {
+.mdx .keywords {
   color: blue;
 }
 
-.mdx .function {
+.mdx .function_name {
+  color: darkgreen;
+}
+
+.mdx .constructor_name {
+  color: #3f982a;
+}
+
+.mdx .variable {
+  color: #6f69ff;
+}
+
+.mdx .number {
+  color: #6f69ff;
+}
+
+.mdx .reference {
   color: red;
 }
 
-.class-name,
-.mdx .maybe-class-name {
-  color: #5e6fed;
+.mdx .symbol {
+  color: red;
+}
+
+.mdx .oper {
+  color: red;
 }
 
 .mdx .comment {
   color: green;
+}
+
+.mdx .type {
+  color: sandybrown;
+}
+
+.mdx .type_complement {
+  /* Foo.<bar> */
+  color: red;
+}
+
+.mdx .var_complement {
+  /* foo.<bar> */
+  color: lightblue;
 }

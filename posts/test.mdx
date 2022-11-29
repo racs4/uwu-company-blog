@@ -1,0 +1,94 @@
+---
+title: "Testing"
+published: true
+publishedOn: 12/12/2025
+---
+
+```hvm
+
+ctr {Vasco vasco}
+
+fun (Sum tree) {
+  (Sum {Leaf x})     = {Vasco #0}
+  (Sum {Branch a b}) = (+ (Sum a) (Sum b))
+}
+```
+
+```hvm
+ctr {Cons x xs}
+ctr {Nil}
+ctr {Pair a b}
+
+run {
+  (Done @~ dup a ~ = #2; a)
+
+  (Done @~ {Cons #4 {Nil}})
+
+  (Done @~ dup x ~ = {Cons (+ #1 #1) {Cons (+ #2 #2) {Cons (+ #3 #3) {Nil}}}}; x)
+
+  (Done dup x ~ = {Cons (+ #1 #1) {Cons (+ #2 #2) {Cons (+ #3 #3) {Nil}}}}; x)
+
+  (Done dup a b = @x @y {Pair x y}; {Pair a b})
+
+  (Done dup a b = (! @x @y {Pair (+ x #1) y} #2); {Pair (!a #10) (!b #20)})
+
+  (Done dup a ~ = (! @x @y {Pair (+ x #1) y} #2); (!a #10))
+}
+
+```
+
+```hvm
+run {
+  ask (Call 'Count' {Inc});
+  ask (Call 'Count' {Inc});
+  ask (Call 'Count' {Inc});
+  ask (Call 'Count' {Inc});
+  ask x = (Call 'Count' {Get});
+  {DONE x}
+}
+```
+
+```json
+{
+  "vasco": 2
+}
+```
+
+```kind2
+// testing comment
+Int.negate(a: Int): Int
+  case a {
+    pos: case a.nat {
+      zero: Int.pos(Nat.zero)
+      succ: Int.neg(a.nat.pred)
+    }
+    neg: Int.pos(Nat.succ(a.nat))
+  }
+
+Int.add(a: Int, b: Int): Int
+  case a b {
+    pos pos: Int.pos(Nat.add(a.nat, b.nat))
+    neg neg: Int.neg(Nat.succ(Nat.add(a.nat, b.nat)))
+    pos neg: if b.nat <? a.nat
+      then Int.pos((a.nat - b.nat) - 1)
+      else Int.neg(b.nat - a.nat)
+    neg pos: Int.add(Int.pos(b.nat), Int.neg(a.nat))
+  }
+```
+
+```kind2
+List.fold <a> <p> (xs: List a) : p -> (a -> p -> p) -> p
+List.fold a p (List.nil t)            = nil => cons => nil
+List.fold a p (List.cons t head tail) = nil => cons => cons head ((List.fold a p tail) nil cons)
+```
+
+```kind2
+// Prints the double of every number up to a limit
+Main : IO (Result () String) {
+  ask limit = IO.prompt "Enter limit:"
+  for x in (List.range limit) {
+    IO.print "{} * 2 = {}" x (Nat.double x)
+  }
+  return Ok ()
+}
+```
